@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wallpaper/Pages/GridView/gridview.dart';
 import 'package:wallpaper/Pages/HomePage/home_page.dart';
 import 'package:wallpaper/Pages/SplashScreen/splashscreen.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wallpaper App',
-      home: SplashScreen(),
+      home: HomePage(),
     );
   }
 }

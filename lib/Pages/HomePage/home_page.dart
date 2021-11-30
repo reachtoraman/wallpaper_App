@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wallpaper/Pages/GridView/gridview.dart';
 import 'package:wallpaper/Utils/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -17,14 +18,16 @@ class _HomePageState extends State<HomePage> {
   final controller = PageController();
   int activeindex = 0;
   final List<String> images = [
-    'https://images.unsplash.com/photo-1586882829491-b81178aa622e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-    'https://images.unsplash.com/photo-1586871608370-4adee64d1794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2862&q=80',
-    'https://images.unsplash.com/photo-1586901533048-0e856dff2c0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-    'https://images.unsplash.com/photo-1586902279476-3244d8d18285?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-    'https://images.unsplash.com/photo-1586943101559-4cdcf86a6f87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1556&q=80',
-    'https://images.unsplash.com/photo-1586951144438-26d4e072b891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-    'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-  ];
+     'https://cdn.wallpapersafari.com/68/46/hOrjCP.png',
+    'https://cdn.wallpapersafari.com/46/62/TcCaiP.png',
+    'https://cdn.wallpapersafari.com/22/14/DWoEp7.jpg',
+    'https://cdn.wallpapersafari.com/87/14/9ZWcE7.png',
+    'https://cdn.wallpapersafari.com/92/0/XTNhZ9.jpg',
+    'https://mcdn.wallpapersafari.com/medium/54/36/pY2G60.jpg',
+    'https://cdn.wallpapersafari.com/62/76/IPtain.jpg',
+    'https://cdn.wallpapersafari.com/64/46/geWc6k.jpg',
+    'https://cdn.wallpapersafari.com/21/93/MY4yvz.jpg',
+    'https://cdn.wallpapersafari.com/70/81/gIkY8L.jpg', ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,39 +69,55 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Container(
                             height: 300,
+                            width: 300,
+                          
                             margin: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: const BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                             child: ClipRRect(
+                            
                                 borderRadius: BorderRadius.circular(20),
-                                child: Image(
+                                child:Hero(tag:'hello', child: 
+                                 Image(
                                   image: NetworkImage(
                                     images[index],
                                   ),
                                   fit: BoxFit.cover,
+                                ))),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (
+                                    BuildContext context,
+                                  ) =>
+                                        GridViewPage(tag:'hello',
+                                          image:images)));
+                            },
+                            child: Container(
+                                height: 300,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  color: const Color(0xb3000000),
+                                  border: Border.all(
+                                    color: Colors.white60,
+                                    width: 1,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Widgetes.text(
+                                      'Category', 30, Colors.white),
                                 )),
                           ),
-                          Container(
-                              height: 300,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 12),
-                              decoration: BoxDecoration(
-                                // color: Colors.white,
-                                color: const Color(0xb3000000),
-                                border: Border.all(
-                                  color: Colors.white60,
-                                  width: 1,
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(20),
-                                ),
-                              ),
-                              child: Center(
-                                child:
-                                    Widgetes.text('Category', 30, Colors.white),
-                              )),
                         ],
                       ),
                   options: CarouselOptions(
@@ -164,27 +183,39 @@ class _HomePageState extends State<HomePage> {
                           bottomRight: Radius.circular(2)),
                       child: Image(
                         image: NetworkImage(images[3]),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill
                       )),
                 ),
-                Container(
-                    margin: const EdgeInsets.only(left: 20, right: 20),
-                    height: MediaQuery.of(context).size.height * 0.18,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(2),
-                            topRight: Radius.circular(32),
-                            bottomLeft: Radius.circular(32),
-                            bottomRight: Radius.circular(2)),
-                        border: Border.all(
-                          color: Colors.white60,
-                          width: 1,
-                        ),
-                        color: const Color(0xb3000000)),
-                    child: Center(
-                      child: Widgetes.text('Category', 30, Colors.white),
-                    )),
+                InkWell(
+                  onTap: (){
+                  
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (
+                                    BuildContext context,
+                                  ) =>
+                                        GridViewPage(tag:'hello',image:images)));
+                  },
+                  child: Container(
+                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      height: MediaQuery.of(context).size.height * 0.18,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(2),
+                              topRight: Radius.circular(32),
+                              bottomLeft: Radius.circular(32),
+                              bottomRight: Radius.circular(2)),
+                          border: Border.all(
+                            color: Colors.white60,
+                            width: 1,
+                          ),
+                          color: const Color(0xb3000000)),
+                      child: Center(
+                        child: Widgetes.text('Category', 30, Colors.white),
+                      )),
+                ),
               ],
             ),
             Container(
@@ -204,8 +235,8 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (BuildContext context, index) => Stack(
                   children: [
                     Container(
-                      width: 160,
-                      height: 160,
+                      width: 150,
+                      height: 150,
                       decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.white60,
@@ -217,22 +248,33 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(160),
                           child: Image(
                             image: NetworkImage(images[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           )),
                     ),
-                    Container(
-                        width: 160,
-                        height: 160,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white60,
-                              width: 1,
-                            ),
-                            color: const Color(0xb3000000),
-                            shape: BoxShape.circle),
-                        child: Center(
-                          child: Widgetes.text('Category', 30, Colors.white),
-                        )),
+                    InkWell(
+                      onTap: (){
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (
+                                    BuildContext context,
+                                  ) =>
+                                        GridViewPage(tag:'hello',image:images)));
+                      },
+                      child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white60,
+                                width: 1,
+                              ),
+                              color: const Color(0xb3000000),
+                              shape: BoxShape.circle),
+                          child: Center(
+                            child: Widgetes.text('Category', 30, Colors.white),
+                          )),
+                    ),
                   ],
                 ),
                 separatorBuilder: (BuildContext context, int index) {
