@@ -5,9 +5,13 @@ import 'package:wallpaper/Pages/HomePage/home_page.dart';
 
 class GridViewPage extends StatefulWidget {
   var image;
-  String tag;
-  GridViewPage({Key? key, @required this.image, required this.tag})
-      : super(key: key);
+  String category;
+
+  GridViewPage({
+    Key? key,
+    @required this.image,
+    required this.category,
+  }) : super(key: key);
 
   @override
   _GridViewPageState createState() => _GridViewPageState();
@@ -60,21 +64,17 @@ class _GridViewPageState extends State<GridViewPage> {
                               DetailScreen(imageindex: widget.image[index])));
                 },
                 child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: ClipRRect(
+                    decoration: const BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Hero(
-                        tag: 'hello',
-                        child:  Image(
+                      child: Image(
                           image: NetworkImage(
                             widget.image[index],
                           ),
-                          fit: BoxFit.cover)),
-                      )
-                     
-                ),
+                          fit: BoxFit.cover),
+                    )),
               );
             },
             staggeredTileBuilder: (index) {

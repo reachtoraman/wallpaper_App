@@ -1,9 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wallpaper/Model/modellist.dart';
+import 'package:wallpaper/Model/models.dart';
+import 'package:wallpaper/Pages/DetailScreen/detailscreen.dart';
 import 'package:wallpaper/Pages/GridView/gridview.dart';
+import 'package:wallpaper/Pages/HomePage/blank.dart';
 import 'package:wallpaper/Utils/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -18,16 +24,24 @@ class _HomePageState extends State<HomePage> {
   final controller = PageController();
   int activeindex = 0;
   final List<String> images = [
-     'https://cdn.wallpapersafari.com/68/46/hOrjCP.png',
-    'https://cdn.wallpapersafari.com/46/62/TcCaiP.png',
-    'https://cdn.wallpapersafari.com/22/14/DWoEp7.jpg',
-    'https://cdn.wallpapersafari.com/87/14/9ZWcE7.png',
-    'https://cdn.wallpapersafari.com/92/0/XTNhZ9.jpg',
-    'https://mcdn.wallpapersafari.com/medium/54/36/pY2G60.jpg',
-    'https://cdn.wallpapersafari.com/62/76/IPtain.jpg',
-    'https://cdn.wallpapersafari.com/64/46/geWc6k.jpg',
-    'https://cdn.wallpapersafari.com/21/93/MY4yvz.jpg',
-    'https://cdn.wallpapersafari.com/70/81/gIkY8L.jpg', ];
+    'https://i.pinimg.com/564x/e0/35/ae/e035ae369b869ffe858d7a4d26ac2cf6.jpg',
+    'https://i.pinimg.com/564x/4f/51/d8/4f51d859b7467d3d1aa17bdab62debe8.jpg',
+    'https://i.pinimg.com/564x/bc/c8/27/bcc827db76e65ef05bf2f46fe2ebb1e0.jpg',
+    'https://i.pinimg.com/564x/e2/e4/0a/e2e40a9626192f2e37a20afdbcc23f02.jpg',
+    'https://i.pinimg.com/564x/ff/0b/c3/ff0bc3eabbd451faf92a21e23ccf61a3.jpg',
+    'https://i.pinimg.com/564x/56/ca/fa/56cafab94e1d680eb4bfc1c4e07c6b65.jpg',
+    'https://i.pinimg.com/564x/4c/9e/1e/4c9e1e9ff8dbb4d75b5b5ad777d77cc7.jpg',
+    'https://i.pinimg.com/564x/c3/21/c5/c321c5604b8cbc40b9f88da6ef3de9c9.jpg',
+    'https://i.pinimg.com/564x/e7/d9/10/e7d910675194768e97f6e230774a19a5.jpg',
+    'https://i.pinimg.com/564x/f0/13/b4/f013b4f555b44f6ea9505fdb0d2d230d.jpg',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    laodCategorySecond();
+    loadCategoryFirst();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,35 +71,32 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.only(top: 10, left: 20),
               alignment: Alignment.centerLeft,
               child: Widgetes.text(
-                  '"Collection of Premium High Quality Wallpapers Explore\n Your Favourite Category"..',
+                  '"Collection of Premium High Quality Wallpapers Explore Your Favourite Category"..',
                   15,
                   Colors.white60),
             ),
             Container(
               margin: const EdgeInsets.only(top: 30),
               child: CarouselSlider.builder(
-                  itemCount: images.length,
+                  itemCount: category1.length,
                   itemBuilder: (context, index, realindex) => Stack(
                         children: [
                           Container(
                             height: 300,
                             width: 300,
-                          
                             margin: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: const BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                             child: ClipRRect(
-                            
                                 borderRadius: BorderRadius.circular(20),
-                                child:Hero(tag:'hello', child: 
-                                 Image(
+                                child: Image(
                                   image: NetworkImage(
-                                    images[index],
+                                    category1[index].url[index],
                                   ),
                                   fit: BoxFit.cover,
-                                ))),
+                                )),
                           ),
                           InkWell(
                             onTap: () {
@@ -95,8 +106,11 @@ class _HomePageState extends State<HomePage> {
                                       builder: (
                                     BuildContext context,
                                   ) =>
-                                        GridViewPage(tag:'hello',
-                                          image:images)));
+                                          GridViewPage(
+                                              image:
+                                                  category1[index].url,
+                                              category: category1[index]
+                                                  .category)));
                             },
                             child: Container(
                                 height: 300,
@@ -115,7 +129,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Center(
                                   child: Widgetes.text(
-                                      'Category', 30, Colors.white),
+                                      category1[index].category,
+                                      30,
+                                      Colors.white),
                                 )),
                           ),
                         ],
@@ -131,7 +147,7 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: AnimatedSmoothIndicator(
                   activeIndex: activeindex,
-                  count: images.length,
+                  count: category1.length,
                   effect: const CustomizableEffect(
                     activeDotDecoration: DotDecoration(
                       width: 20,
@@ -182,20 +198,19 @@ class _HomePageState extends State<HomePage> {
                           bottomLeft: Radius.circular(32),
                           bottomRight: Radius.circular(2)),
                       child: Image(
-                        image: NetworkImage(images[3]),
-                        fit: BoxFit.fill
-                      )),
+                          image: NetworkImage(category2[0].url[0]),
+                          fit: BoxFit.fill)),
                 ),
                 InkWell(
-                  onTap: (){
-                  
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (
-                                    BuildContext context,
-                                  ) =>
-                                        GridViewPage(tag:'hello',image:images)));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (
+                          BuildContext context,
+                        ) =>
+                                Blankpage()));
+                    // GridViewPage(image: images)));
                   },
                   child: Container(
                       margin: const EdgeInsets.only(left: 20, right: 20),
@@ -213,7 +228,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                           color: const Color(0xb3000000)),
                       child: Center(
-                        child: Widgetes.text('Category', 30, Colors.white),
+                        child: Widgetes.text(
+                            category2[0].category, 30, Colors.white),
                       )),
                 ),
               ],
@@ -252,14 +268,14 @@ class _HomePageState extends State<HomePage> {
                           )),
                     ),
                     InkWell(
-                      onTap: (){
-                          Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (
-                                    BuildContext context,
-                                  ) =>
-                                        GridViewPage(tag:'hello',image:images)));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (
+                              BuildContext context,
+                            ) =>Blankpage()));
+                                    // GridViewPage(image: images)));
                       },
                       child: Container(
                           width: 150,

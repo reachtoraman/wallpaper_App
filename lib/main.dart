@@ -28,7 +28,9 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wallpaper App',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
+
+ 
 }

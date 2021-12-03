@@ -28,7 +28,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 fit: BoxFit.cover,
               ),
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 _showMyDialog();
               },
@@ -40,10 +40,14 @@ class _DetailScreenState extends State<DetailScreen> {
                       top: MediaQuery.of(context).size.height * 0.90),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.white.withOpacity(0.50),
+                    boxShadow:[BoxShadow(
+                      color: Colors.black.withOpacity(0.75),
+                      offset: const Offset(0, 0)
+                    )],
+                   
                   ),
                   child: Center(
-                    child: Widgetes.text('Set as Wallpaper', 25, Colors.black),
+                    child: Widgetes.text('Set as Wallpaper', 25, Colors.white54),
                   )),
             )
           ],
@@ -132,16 +136,17 @@ class _DetailScreenState extends State<DetailScreen> {
                         WallpaperManagerFlutter.HOME_SCREEN);
                   },
                   child: Container(
-                      height: 50,
+                      height: 40,
                       decoration: const BoxDecoration(
-                        color: Colors.white60,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
+                         color: Color(0XBF000000),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20)
+                         
+
                         ),
                       ),
                       child: Center(
-                        child: Widgetes.text('Home Screen', 20, Colors.black),
+                        child: Widgetes.text('Home Screen', 20, Colors.white54),
                       )),
                 ),
                 const SizedBox(
@@ -153,15 +158,14 @@ class _DetailScreenState extends State<DetailScreen> {
                         WallpaperManagerFlutter.LOCK_SCREEN);
                   },
                   child: Container(
-                    height: 50,
+                    height: 40,
                     decoration: const BoxDecoration(
-                        color: Colors.white60,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        )),
+                        color: Color(0XBF000000),
+                        borderRadius:BorderRadius.all(
+                          Radius.circular(20))),
+                      
                     child: Center(
-                        child: Widgetes.text('Lock Screen', 20, Colors.black)),
+                        child: Widgetes.text('Lock Screen', 20, Colors.white54)),
                   ),
                 ),
                 const SizedBox(
@@ -173,16 +177,14 @@ class _DetailScreenState extends State<DetailScreen> {
                           WallpaperManagerFlutter.BOTH_SCREENS);
                     },
                     child: Container(
-                      height: 50,
+                      height: 40,
                       decoration: const BoxDecoration(
-                          color: Colors.white60,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          )),
+                           color: Color(0XBF000000),
+                          borderRadius: BorderRadius.all(
+                          Radius.circular(20))),
                       child: Center(
                           child:
-                              Widgetes.text('Both Screen', 20, Colors.black)),
+                              Widgetes.text('Both Screen', 20, Colors.white54)),
                     ))
               ],
             ),
