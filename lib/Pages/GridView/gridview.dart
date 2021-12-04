@@ -61,7 +61,9 @@ class _GridViewPageState extends State<GridViewPage> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              DetailScreen(imageindex: widget.image[index])));
+                              DetailScreen(imageindex: widget.image[index],
+                              imageurl:widget.image)
+                              ));
                 },
                 child: Container(
                     decoration: const BoxDecoration(

@@ -1,13 +1,18 @@
-import 'package:file/src/interface/file.dart';
 import 'package:flutter/material.dart';
 import 'package:wallpaper/Utils/widgets.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'dart:ui';
 
 class DetailScreen extends StatefulWidget {
-  var imageindex;
+  dynamic imageindex;
+  dynamic imageurl;
 
-  DetailScreen({@required this.imageindex, Key? key}) : super(key: key);
+  DetailScreen({
+    @required this.imageindex,
+    @required this.imageurl,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -23,31 +28,47 @@ class _DetailScreenState extends State<DetailScreen> {
             Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              child: Image(
-                image: NetworkImage(widget.imageindex),
-                fit: BoxFit.cover,
-              ),
+              child: PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  onPageChanged: (index) {
+                    setState(() {
+                      widget.imageindex=widget.imageurl[index].toString();
+                    });
+                  },
+                  itemCount: widget.imageurl.length,
+                  itemBuilder: (BuildContext context, index) => Image(
+                        image: NetworkImage(widget.imageindex),
+                        fit: BoxFit.cover,
+                      )),
+
+              // child: Image(
+              //   image: NetworkImage(widget.imageindex),
+              //   fit: BoxFit.cover,
+
+              // ),
             ),
             GestureDetector(
               onTap: () {
-                _showMyDialog();
+                // _showMyDialog();
+                bottomsheet();
               },
               child: Container(
                   height: 50,
                   margin: EdgeInsets.only(
-                      left: 30,
-                      right: 30,
+                      left: 60,
+                      right: 60,
                       top: MediaQuery.of(context).size.height * 0.90),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow:[BoxShadow(
-                      color: Colors.black.withOpacity(0.75),
-                      offset: const Offset(0, 0)
-                    )],
-                   
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(color: Colors.indigo
+                          //  Color(0XFF069bf7),
+
+                          )
+                    ],
                   ),
                   child: Center(
-                    child: Widgetes.text('Set as Wallpaper', 25, Colors.white54),
+                    child: Widgetes.text('Set as Wallpaper', 20, Colors.white),
                   )),
             )
           ],
@@ -138,12 +159,8 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: Container(
                       height: 40,
                       decoration: const BoxDecoration(
-                         color: Color(0XBF000000),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20)
-                         
-
-                        ),
+                        color: Color(0XBF000000),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Center(
                         child: Widgetes.text('Home Screen', 20, Colors.white54),
@@ -161,11 +178,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     height: 40,
                     decoration: const BoxDecoration(
                         color: Color(0XBF000000),
-                        borderRadius:BorderRadius.all(
-                          Radius.circular(20))),
-                      
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Center(
-                        child: Widgetes.text('Lock Screen', 20, Colors.white54)),
+                        child:
+                            Widgetes.text('Lock Screen', 20, Colors.white54)),
                   ),
                 ),
                 const SizedBox(
@@ -179,9 +195,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     child: Container(
                       height: 40,
                       decoration: const BoxDecoration(
-                           color: Color(0XBF000000),
-                          borderRadius: BorderRadius.all(
-                          Radius.circular(20))),
+                          color: Color(0XBF000000),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: Center(
                           child:
                               Widgetes.text('Both Screen', 20, Colors.white54)),
@@ -191,6 +206,102 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         );
       },
+    );
+  }
+
+  bottomsheet() {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (
+        BuildContext context,
+      ) =>
+          Container(
+        margin: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height * 0.14,
+            left: 30,
+            right: 30),
+        height: MediaQuery.of(context).size.height * 0.12,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.indigo),
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                _setwallpaperHomeScreen(WallpaperManagerFlutter.HOME_SCREEN);
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 15, left: 8, right: 8),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.home,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Home Screen',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 18, bottom: 18),
+              color: Colors.white,
+              width: 1,
+            ),
+            GestureDetector(
+              onTap: () {
+                _setwallpaperLockScreen(WallpaperManagerFlutter.LOCK_SCREEN);
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 15, left: 8, right: 8),
+                child: Column(
+                  children: [
+                    Icon(Icons.lock, size: 30, color: Colors.white),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Lock Screen',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 18, bottom: 18),
+              color: Colors.white,
+              width: 1,
+            ),
+            GestureDetector(
+              onTap: () {
+                _setwallpaperBothScreen(WallpaperManagerFlutter.BOTH_SCREENS);
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 15, left: 8, right: 8),
+                child: Column(
+                  children: [
+                    Icon(Icons.mobile_friendly, size: 30, color: Colors.white),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Both Screen',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

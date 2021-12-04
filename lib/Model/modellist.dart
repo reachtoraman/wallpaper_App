@@ -8,6 +8,13 @@ List<CircleListModel> category3 = [];
 
 void laodCategorySecond() {
   SingleContainerModel devotional = SingleContainerModel('Devotional', [
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper93-637.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/Cute_Radha_Krishna-155.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper145-664.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper__8-463.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper47-449.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper__79-467.jpg',
+    'https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper_56-389.jpg',
     'https://i.pinimg.com/564x/e0/35/ae/e035ae369b869ffe858d7a4d26ac2cf6.jpg',
     'https://i.pinimg.com/564x/4f/51/d8/4f51d859b7467d3d1aa17bdab62debe8.jpg',
     'https://i.pinimg.com/564x/bc/c8/27/bcc827db76e65ef05bf2f46fe2ebb1e0.jpg',
@@ -61,6 +68,10 @@ void laodCategorySecond() {
 
 void loadCategoryFirst() {
   SquareModel wildLife = SquareModel('Wild Life', [
+    'https://wallpapercave.com/wp/wp5161016.png',
+    'https://wallpapercave.com/wp/wp5156170.jpg',
+    'https://images.unsplash.com/photo-1539508374952-bac3abfbf89d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dWx0cmElMjBoZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60',
+    'https://images.unsplash.com/photo-1508138142660-302e69e74271?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dWx0cmElMjBoZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60',
     'https://i.pinimg.com/564x/82/ed/2f/82ed2f8e94aa76fe6373e5866279358a.jpg',
     'https://i.pinimg.com/564x/77/71/a7/7771a7d7edd7c8ff8a8874147352d95f.jpg',
     'https://i.pinimg.com/564x/f6/f3/e9/f6f3e9f185c3fa13984487835f5a5b49.jpg',
@@ -314,3 +325,32 @@ void loadCategoryFirst() {
   category1.add(flowers);
   category1.add(indianflag);
 }
+
+CircleListModel carLovers = CircleListModel('Car Lover', [
+  'https://i.pinimg.com/564x/d9/52/d6/d952d61e0af12dc28a9254d2e74c139b.jpg',
+  'https://i.pinimg.com/474x/aa/15/c1/aa15c15831a07cd8373160b888dfad8e.jpg',
+  'https://i.pinimg.com/474x/5c/3b/02/5c3b0225a44d352eda43bb57b1443936.jpg',
+  'https://i.pinimg.com/474x/24/4a/37/244a377ec6020b5e37cd7ac316e5dc39.jpg',
+  'https://i.pinimg.com/474x/b0/f6/5a/b0f65ae2b3bc258c5cb245ca3acf5ab6.jpg',
+  'https://i.pinimg.com/474x/97/e7/ec/97e7ec10e8d0957b67a08a215f9ca81d.jpg',
+  'https://i.pinimg.com/474x/76/92/bf/7692bfab66b030999da7ea6206b850e4.jpg',
+  'https://i.pinimg.com/474x/89/3d/7c/893d7c53bef2fafdf8e74f84d4ce438f.jpg',
+  'https://i.pinimg.com/474x/ef/dd/05/efdd05433ba33ab2077ba41f38eb01ca.jpg',
+  'https://i.pinimg.com/474x/fe/b4/90/feb4903ac4f91a2518254d9387671126.jpg',
+  'https://i.pinimg.com/474x/8f/d0/7e/8fd07eef1508f387f1f4072461bc602a.jpg',
+  'https://i.pinimg.com/474x/c3/0a/4d/c30a4d9d5cee604fe65e7e5cd67c7efa.jpg',
+  'https://i.pinimg.com/474x/82/b0/cc/82b0cce7f5e58bc2f0072a15df6ca07d.jpg',
+  'https://i.pinimg.com/474x/bc/3e/17/bc3e174a12b2791ec1ed02f36f650115.jpg',
+  'https://i.pinimg.com/474x/43/79/71/4379710d784448edb588526ad3c16def.jpg',
+  'https://i.pinimg.com/474x/b3/37/69/b337696a8a6d59065af333b362560777.jpg',
+  'https://i.pinimg.com/474x/3e/05/47/3e05474ab02d7f3cf3ecb3eaa2f11d97.jpg',
+  'https://i.pinimg.com/474x/db/e6/a5/dbe6a508930bc9a791b19fd8cb118bf2.jpg',
+  'https://i.pinimg.com/474x/9b/21/9f/9b219fecf9e631ceebd7c6b6e799bb52.jpg',
+  'https://i.pinimg.com/474x/55/07/73/5507736c4b4d19d1cb9883a227ce1d6b.jpg',
+  'https://i.pinimg.com/474x/86/27/41/8627416f72d6378b16ce9665541e0d9b.jpg',
+  'https://i.pinimg.com/474x/18/06/ef/1806ef59c2450ffa26d9fcacf847f1f6.jpg',
+  'https://i.pinimg.com/474x/c0/24/b0/c024b0c2bfdd042677ac49dfc17939d5.jpg',
+  'https://i.pinimg.com/474x/36/5c/cd/365ccd3f1aae452e04d450177940af03.jpg',
+  
+]);
+
