@@ -120,7 +120,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     duration:const Duration(milliseconds: 400),
                     opacity: isvisible ? 1 : 0,
                     child:const Icon(
-                      Icons.call,
+                      FeatherIcons.phone,
                       color: Colors.white,
                     ))),
                      Positioned(
@@ -131,6 +131,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     duration:const Duration(milliseconds: 400),
                     opacity: isvisible ? 1 : 0,
                     child:const Icon(
+                      FeatherIcons.camera
                       ,
                       color: Colors.white,
                     ))),
