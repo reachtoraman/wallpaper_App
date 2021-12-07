@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:wallpaper/Utils/widgets.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'dart:ui';
+import 'package:intl/intl.dart';
+import "package:flutter_feather_icons/flutter_feather_icons.dart";
 
 class DetailScreen extends StatefulWidget {
   dynamic imageindex;
@@ -19,60 +23,152 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  bool isvisible = false;
+  
+  String? _timeString;
+  String? _dateStrng;
+ @override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    _dateStrng = _formatDateTime(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getdate());
+
+    this._getTime();
+    super.initState();
+    this._getdate();
+   
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: PageView.builder(
-                  scrollDirection: Axis.vertical,
-                  onPageChanged: (index) {
-                    setState(() {
-                      widget.imageindex=widget.imageurl[index].toString();
-                    });
-                  },
-                  itemCount: widget.imageurl.length,
-                  itemBuilder: (BuildContext context, index) => Image(
-                        image: NetworkImage(widget.imageindex),
-                        fit: BoxFit.cover,
-                      )),
-
-              // child: Image(
-              //   image: NetworkImage(widget.imageindex),
-              //   fit: BoxFit.cover,
-
-              // ),
-            ),
             GestureDetector(
               onTap: () {
-                // _showMyDialog();
-                bottomsheet();
+                setState(() {
+                  isvisible = !isvisible;
+                });
               },
               child: Container(
-                  height: 50,
-                  margin: EdgeInsets.only(
-                      left: 60,
-                      right: 60,
-                      top: MediaQuery.of(context).size.height * 0.90),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(color: Colors.indigo
-                          //  Color(0XFF069bf7),
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: PageView.builder(
+                    scrollDirection: Axis.vertical,
+                    onPageChanged: (index) {
+                      setState(() {
+                        widget.imageindex = widget.imageurl[index].toString();
+                      });
+                    },
+                    itemCount: widget.imageurl.length,
+                    itemBuilder: (BuildContext context, index) => Image(
+                          image: NetworkImage(widget.imageindex),
+                          fit: BoxFit.fill,
+                        )),
+              ),
+            ),
+            GestureDetector(
+              
+              onTap: () {
+                // _showMyDialog();
+               isvisible?Container(): bottomsheet();
+              },
+              child: AnimatedOpacity(
+                duration:const Duration(milliseconds: 400),
+                opacity: isvisible?0:1,
 
-                          )
-                    ],
-                  ),
-                  child: Center(
-                    child: Widgetes.text('Set as Wallpaper', 20, Colors.white),
-                  )),
-            )
+                child: Container(
+                    height: 50,
+                    margin: EdgeInsets.only(
+                        left: 60,
+                        right: 60,
+                        top: MediaQuery.of(context).size.height * 0.90),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(color: Colors.indigo
+                            //  Color(0XFF069bf7),
+              
+                            ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Widgetes.text('Set as Wallpaper', 20, Colors.white),
+                    )),
+              ),
+            ),
+            Positioned(
+                height: MediaQuery.of(context).size.height * 0.20,
+                left: 0,
+                right: 0,
+                child: AnimatedOpacity(
+                    duration:const Duration(milliseconds: 400),
+                    opacity: isvisible ? 1 : 0,
+                    child:const Icon(
+                      Icons.lock,
+                      color: Colors.white,
+                    ))),
+                     Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.04,
+                left: 30,
+                
+                child: AnimatedOpacity(
+                    duration:const Duration(milliseconds: 400),
+                    opacity: isvisible ? 1 : 0,
+                    child:const Icon(
+                      Icons.call,
+                      color: Colors.white,
+                    ))),
+                     Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.04,
+                right: 30,
+                
+                child: AnimatedOpacity(
+                    duration:const Duration(milliseconds: 400),
+                    opacity: isvisible ? 1 : 0,
+                    child:const Icon(
+                      ,
+                      color: Colors.white,
+                    ))),
+                    
+                       Positioned(
+                    top: MediaQuery.of(context).size.height * 0.15,
+                    left: 0,
+                    right: 0,
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 400),
+                      opacity: isvisible ? 1 : 0,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Text(
+                              _timeString.toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 45,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Cairo'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text(
+                                _dateStrng.toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'Cairo'),
+                              ),
+                            ),
           ],
-        ));
+                         ),
+                      )))] ));
   }
 
   Future _setwallpaperHomeScreen(
@@ -303,5 +399,27 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
       ),
     );
+  }
+  void _getdate() {
+    // await _askPermission();
+    final String formattedDate =
+        DateFormat('EE, dd MMMM ').format(DateTime.now()).toString();
+    _dateStrng = formattedDate;
+  }
+
+  String formatDate(DateTime dateTime) {
+    return DateFormat('MM/dd/yyyy hh:mm').format(dateTime);
+  }
+
+// date time methood
+  void _getTime() {
+    // await _askPermission();
+    final String formattedDateTime =
+        DateFormat(' kk:mm  ').format(DateTime.now()).toString();
+    _timeString = formattedDateTime;
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return DateFormat('MM/dd/yyyy hh:mm').format(dateTime);
   }
 }

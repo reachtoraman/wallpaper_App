@@ -31,10 +31,7 @@ class _GridViewSingleContainerPageState extends State<GridViewSingleContainerPag
         toolbarHeight: MediaQuery.of(context).size.height * 0.05,
         leading: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const HomePage()));
+               Navigator.pop(context);
             },
             child: const Icon(Icons.arrow_back_rounded)),
       ),
@@ -49,7 +46,7 @@ class _GridViewSingleContainerPageState extends State<GridViewSingleContainerPag
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>

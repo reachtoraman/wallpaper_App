@@ -1,9 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wallpaper/Model/modellist.dart';
 import 'package:wallpaper/Model/models.dart';
@@ -23,21 +24,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // GlobalKey _one = GlobalKey();
+  // GlobalKey _two = GlobalKey();
+
   final controller = PageController();
   int activeindex = 0;
   int? index;
-  final List<String> images = [
-    'https://i.pinimg.com/564x/e0/35/ae/e035ae369b869ffe858d7a4d26ac2cf6.jpg',
-    'https://i.pinimg.com/564x/4f/51/d8/4f51d859b7467d3d1aa17bdab62debe8.jpg',
-    'https://i.pinimg.com/564x/bc/c8/27/bcc827db76e65ef05bf2f46fe2ebb1e0.jpg',
-    'https://i.pinimg.com/564x/e2/e4/0a/e2e40a9626192f2e37a20afdbcc23f02.jpg',
-    'https://i.pinimg.com/564x/ff/0b/c3/ff0bc3eabbd451faf92a21e23ccf61a3.jpg',
-    'https://i.pinimg.com/564x/56/ca/fa/56cafab94e1d680eb4bfc1c4e07c6b65.jpg',
-    'https://i.pinimg.com/564x/4c/9e/1e/4c9e1e9ff8dbb4d75b5b5ad777d77cc7.jpg',
-    'https://i.pinimg.com/564x/c3/21/c5/c321c5604b8cbc40b9f88da6ef3de9c9.jpg',
-    'https://i.pinimg.com/564x/e7/d9/10/e7d910675194768e97f6e230774a19a5.jpg',
-    'https://i.pinimg.com/564x/f0/13/b4/f013b4f555b44f6ea9505fdb0d2d230d.jpg',
-  ];
 
   @override
   void initState() {
@@ -45,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     laodCategorySecond();
     loadCategoryFirst();
     loadthirdcategory();
+    
   }
 
   @override
@@ -88,7 +81,8 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             height: 300,
                             width: 300,
-                            margin: const EdgeInsets.symmetric(horizontal: 12),
+                            margin:
+                                const EdgeInsets.symmetric(horizontal: 12),
                             decoration: const BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius:
@@ -112,16 +106,16 @@ class _HomePageState extends State<HomePage> {
                                   ) =>
                                           GridViewPage(
                                               image: category1[index].url,
-                                              category:
-                                                  category1[index].category)));
+                                              category: category1[index]
+                                                  .category)));
                             },
                             child: Container(
                                 height: 300,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 12),
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 12),
                                 decoration: BoxDecoration(
                                   // color: Colors.white,
-                                  color: const Color(0xb3000000),
+                                  color: const Color(0x66000000),
                                   border: Border.all(
                                     color: Colors.white60,
                                     width: 1,
@@ -186,7 +180,7 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height * 0.18,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                physics: NeverScrollableScrollPhysics(),
+                physics:const NeverScrollableScrollPhysics(),
                 itemCount: 1,
                 itemBuilder: (BuildContext context, index) => Center(
                   child: Stack(
@@ -240,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Colors.white60,
                                   width: 1,
                                 ),
-                                color: const Color(0xb3000000)),
+                                color: const Color(0x66000000)),
                             child: Center(
                               child: Widgetes.text(
                                   category2[0].category, 30, Colors.white),
@@ -292,11 +286,9 @@ class _HomePageState extends State<HomePage> {
                                 builder: (
                               BuildContext context,
                             ) =>
-                            GridViewCircleContainerPage(
-                                              image: category3[index].url,
-                                              category:
-                                                  category3[index].category)));
-                                   
+                                    GridViewCircleContainerPage(
+                                        image: category3[index].url,
+                                        category: category3[index].category)));
                       },
                       child: Container(
                           width: 150,
@@ -306,10 +298,11 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.white60,
                                 width: 1,
                               ),
-                              color: const Color(0xb3000000),
+                              color: const Color(0x66000000),
                               shape: BoxShape.circle),
                           child: Center(
-                            child: Widgetes.text(category3[index].category, 30, Colors.white),
+                            child: Widgetes.text(
+                                category3[index].category, 20, Colors.white),
                           )),
                     ),
                   ],

@@ -27,10 +27,7 @@ class _GridViewCircleContainerPageState extends State<GridViewCircleContainerPag
         toolbarHeight: MediaQuery.of(context).size.height * 0.05,
         leading: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const HomePage()));
+              Navigator.pop(context);
             },
             child: const Icon(Icons.arrow_back_rounded)),
       ),
