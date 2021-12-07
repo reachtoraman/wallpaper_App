@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:wallpaper/Utils/widgets.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
@@ -119,7 +120,7 @@ class _DetailScreenCircleListPageState extends State<DetailScreenCircleListPage>
                     duration:const Duration(milliseconds: 400),
                     opacity: isvisible ? 1 : 0,
                     child:const Icon(
-                      Icons.call,
+                      FeatherIcons.phoneCall,
                       color: Colors.white,
                     ))),
                      Positioned(
@@ -130,7 +131,7 @@ class _DetailScreenCircleListPageState extends State<DetailScreenCircleListPage>
                     duration: Duration(milliseconds: 400),
                     opacity: isvisible ? 1 : 0,
                     child:const Icon(
-                      Icons.camera,
+                      FeatherIcons.camera,
                       color: Colors.white,
                     ))),
                        Positioned(

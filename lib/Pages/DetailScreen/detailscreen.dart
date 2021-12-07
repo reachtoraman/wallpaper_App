@@ -86,7 +86,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     margin: EdgeInsets.only(
                         left: 60,
                         right: 60,
-                        top: MediaQuery.of(context).size.height * 0.90),
+                        top: MediaQuery.of(context).size.height * 0.92),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
@@ -109,11 +109,11 @@ class _DetailScreenState extends State<DetailScreen> {
                     duration:const Duration(milliseconds: 400),
                     opacity: isvisible ? 1 : 0,
                     child:const Icon(
-                      Icons.lock,
+                      FeatherIcons.lock,
                       color: Colors.white,
                     ))),
                      Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.04,
+                bottom: MediaQuery.of(context).size.height * 0.02,
                 left: 30,
                 
                 child: AnimatedOpacity(
@@ -124,7 +124,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: Colors.white,
                     ))),
                      Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.04,
+                bottom: MediaQuery.of(context).size.height * 0.02,
                 right: 30,
                 
                 child: AnimatedOpacity(
@@ -152,7 +152,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               style: TextStyle(
                                   fontSize: 45,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w300,
                                   fontFamily: 'Cairo'),
                             ),
                             Padding(
@@ -224,8 +224,9 @@ class _DetailScreenState extends State<DetailScreen> {
     try {
       WallpaperManagerFlutter().setwallpaperfromFile(file, location);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Wallpaper updated on Lock Screen'),
+        const SnackBar(backgroundColor: Colors.black,
+        
+          content: Text('Wallpaper updated on Lock Screen',),
         ),
       );
     } catch (e) {
@@ -323,7 +324,7 @@ class _DetailScreenState extends State<DetailScreen> {
             borderRadius: BorderRadius.circular(10), color: Colors.indigo),
         child: Row(
           children: [
-            GestureDetector(
+            InkWell(
               onTap: () {
                 _setwallpaperHomeScreen(WallpaperManagerFlutter.HOME_SCREEN);
                 Navigator.of(context).pop();
@@ -353,7 +354,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: Colors.white,
               width: 1,
             ),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 _setwallpaperLockScreen(WallpaperManagerFlutter.LOCK_SCREEN);
                 Navigator.of(context).pop();
@@ -377,7 +378,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: Colors.white,
               width: 1,
             ),
-            GestureDetector(
+          InkWell(
               onTap: () {
                 _setwallpaperBothScreen(WallpaperManagerFlutter.BOTH_SCREENS);
                 Navigator.of(context).pop();
